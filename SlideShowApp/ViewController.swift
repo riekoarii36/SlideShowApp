@@ -8,11 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController{
+    
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var play: UIButton!
     
     let photos = ["画像１.png", "画像２.png", "画像３.png", "画像４.png", "画像５.png", "画像６.png"]
+    
+    var index:Int = 0
+    var timer : Timer!
+
+    @IBOutlet weak var btnGo: UIButton!
+    @IBOutlet weak var btnBack: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +29,12 @@ class ViewController: UIViewController {
         imageView.isUserInteractionEnabled = true
         imageView.tag = 100
         
-        let image:UIImage! = UIImage(named: photos[0])
+        let image:UIImage! = UIImage(named: photos[index])
         
         imageView.image = image
+        
+        timerInitialized()
+        timerStop()
 
     }
 
@@ -39,39 +50,95 @@ class ViewController: UIViewController {
             let tag = touch.view!.tag
             switch tag {
             case 100:
-                print("tapped")
                 
-                let storyboard = UIStoryboard(name: "Next", bundle: nil)
-                //let viewController = storyboard.instantiateInitialViewController()
+            //let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "Next")as! NextViewController
+            
+            //nextViewController.pic = photos[index]
+            
+            performSegue(withIdentifier: "segueNext", sender: nil)
                 
-                let nextViewController = storyboard.instantiateViewController(withIdentifier: "NextViewController")as! NextViewController
-                nextViewController.modalTransitionStyle = UIModalTransitionStyle.partialCurl
-                // 値渡ししたい時 hoge -> piyo
-                nextViewController.x = 0
-                //nextController.x = self.hoge
-                // Viewの移動する.
-
-
-                //self.present(nextViewController as UIViewController, animated: true, completion: nil)
-         
-                
-                
-                
-                
-                
-                // 遷移するViewを定義する.このas!はswift1.2では as?だったかと。
-                //let nextiewController: NextViewController = self.storyboard?.instantiateInitialViewController()("secondVC") as? NextViewController
-    // アニメーションを設定する.
-    //secondViewController.modalTransitionStyle = UIModalTransitionStyle.PartialCurl
-    // 値渡ししたい時 hoge -> piyo
-    //secondViewController.piyo = self.hoge
-    // Viewの移動する.
-    //self.presentViewController(secondViewController, animated: true, completion: nil)
-           default:
-               break
-           }
-       }
+            default:
+                break
+            }
+        }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "segueNext"){            
+            let nextViewController:NextViewController = segue.destination as! NextViewController
+            
+            nextViewController.x = index
+            nextViewController.pic = photos[index]
 
+        }
+    }
+    
+    func nextPage(){
+        if (index <= 3) {
+            index += 1
+        }else{
+            index = 0
+        }
+        imageView.image = UIImage(named: photos[index])
+        self.view.addSubview(imageView)
+    }
+    
+    func timerInitialized(){
+        timer = Timer.scheduledTimer(timeInterval: 2, target : self, selector : #selector(ViewController.nextPage), userInfo: nil, repeats:true)
+    }
+    
+    func timerStart(){
+        if(!timer.isValid){
+            timerInitialized()
+        }
+    }
+    
+    func timerStop(){
+        if(timer.isValid){
+            timer.invalidate()
+        }
+    }
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+    }
+    
+    @IBAction func go(_ sender: AnyObject) {
+        if (index <= 3) {
+            index += 1
+        }else{
+            index = 0
+        }
+        imageView.image = UIImage(named: photos[index])
+        self.view.addSubview(imageView)
+        
+    }
+    
+    @IBAction func back(_ sender: AnyObject) {
+        if (index <= 0) {
+            index = 4
+        }else{
+            index -= 1
+        }
+        imageView.image = UIImage(named: photos[index])
+        self.view.addSubview(imageView)
+    }
+    
+    @IBAction func play(_ sender: AnyObject) {
+
+        if(play.currentTitle == "再生"){
+            imageView.image = UIImage(named: photos[index])
+            self.view.addSubview(imageView)
+            self.play.setTitle("停止", for: UIControlState.normal)
+            self.btnGo.isEnabled = false
+            self.btnBack.isEnabled = false
+            timerStart()
+        }else{
+            self.play.setTitle("再生", for: UIControlState.normal)
+            self.btnGo.isEnabled = true
+            self.btnBack.isEnabled = true
+            timerStop()
+        }
+    }
+    
 }
 

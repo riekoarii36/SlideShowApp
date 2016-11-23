@@ -1,31 +1,19 @@
 //
-//  NextViewController.swift
+//  NavigationController.swift
 //  SlideShowApp
 //
-//  Created by 牧 里江子 on 2016/11/15.
+//  Created by 牧 里江子 on 2016/11/16.
 //  Copyright © 2016年 riki. All rights reserved.
 //
 
 import UIKit
 
-class NextViewController: UIViewController {
+class NavigationController: UINavigationController {
 
-//    let photos = ["画像１.png", "画像２.png", "画像３.png", "画像４.png", "画像５.png", "画像６.png"]
-
-    @IBOutlet weak var nextimageView: UIImageView!
-    
-    var pic:String = ""
-    var x:Int = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        nextimageView.image = UIImage(named: pic)
-        //nextimageView.image = UIImage(named: pic)
-        //self.nextimageView.addSubview(nextimageView)
 
-        
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

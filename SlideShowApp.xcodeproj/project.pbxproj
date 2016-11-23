@@ -18,6 +18,7 @@
 		7E94F21C1DDB55F500902374 /* 画像３.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E94F2171DDB55F500902374 /* 画像３.png */; };
 		7E94F21D1DDB55F500902374 /* 画像４.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E94F2181DDB55F500902374 /* 画像４.png */; };
 		7E94F21E1DDB55F500902374 /* 画像５.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E94F2191DDB55F500902374 /* 画像５.png */; };
+		7E94F2201DDB635500902374 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E94F21F1DDB635500902374 /* NavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7E94F2171DDB55F500902374 /* 画像３.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "画像３.png"; path = "../image/画像３.png"; sourceTree = "<group>"; };
 		7E94F2181DDB55F500902374 /* 画像４.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "画像４.png"; path = "../image/画像４.png"; sourceTree = "<group>"; };
 		7E94F2191DDB55F500902374 /* 画像５.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "画像５.png"; path = "../image/画像５.png"; sourceTree = "<group>"; };
+		7E94F21F1DDB635500902374 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				7E94F2191DDB55F500902374 /* 画像５.png */,
 				7E94F1FF1DDB529600902374 /* AppDelegate.swift */,
 				7E94F2011DDB529600902374 /* ViewController.swift */,
+				7E94F21F1DDB635500902374 /* NavigationController.swift */,
 				7E94F2031DDB529600902374 /* Main.storyboard */,
 				7E94F2131DDB547A00902374 /* NextViewController.swift */,
 				7E94F2061DDB529600902374 /* Assets.xcassets */,
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E94F2021DDB529600902374 /* ViewController.swift in Sources */,
+				7E94F2201DDB635500902374 /* NavigationController.swift in Sources */,
 				7E94F2141DDB547A00902374 /* NextViewController.swift in Sources */,
 				7E94F2001DDB529600902374 /* AppDelegate.swift in Sources */,
 			);
